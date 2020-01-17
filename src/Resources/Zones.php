@@ -4,25 +4,31 @@ namespace Wappr\Cloudflare\Resources;
 
 use GraphQL\Query;
 use GraphQL\RawObject;
-use Wappr\Cloudflare\Contracts\QueryInterface;
+use Wappr\Cloudflare\Contracts\DataSetInterface;
+use Wappr\Cloudflare\Contracts\ResourceInterface;
 
-class Zones implements QueryInterface
+class Zones implements ResourceInterface
 {
-    protected $request;
+    protected $dataset = [];
     protected $zoneid;
 
-    public function __construct(QueryInterface $request, $zoneid)
+    public function __construct(DataSetInterface $dataset, $zoneid)
     {
-        $this->request = $request->getQuery();
-        $this->zoneid  = $zoneid;
+        $this->dataset[] = $dataset->getDataSet();
+        $this->zoneid    = $zoneid;
     }
 
-    public function getQuery()
+    public function getResource()
     {
         $query = new Query('zones');
-        $query->setArguments(['filter' => new RawObject("{zoneTag: \"".$this->zoneid."\"}")]);
-        $query->setSelectionSet([$this->request]);
+        $query->setArguments(['filter' => new RawObject('{zoneTag: "'.$this->zoneid.'"}')]);
+        $query->setSelectionSet($this->dataset);
 
         return $query;
+    }
+
+    public function addDataSet(DataSetInterface $dataset)
+    {
+        $this->dataset[] = $dataset->getDataSet();
     }
 }

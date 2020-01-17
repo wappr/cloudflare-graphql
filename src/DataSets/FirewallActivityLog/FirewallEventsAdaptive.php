@@ -1,6 +1,6 @@
 <?php
 
-namespace Wappr\Cloudflare\DataSets\HttpRequests;
+namespace Wappr\Cloudflare\DataSets\FirewallActivityLog;
 
 use DateTime;
 use GraphQL\Query;
@@ -8,7 +8,7 @@ use GraphQL\RawObject;
 use Wappr\Cloudflare\Contracts\DataSetInterface;
 use Wappr\Cloudflare\Contracts\SelectionSetInterface;
 
-class HttpRequests1dGroups implements DataSetInterface
+class FirewallEventsAdaptive implements DataSetInterface
 {
     protected $selectionSet = [];
 
@@ -17,7 +17,7 @@ class HttpRequests1dGroups implements DataSetInterface
 
     public function __construct(SelectionSetInterface $selectionSet, DateTime $date, $limit)
     {
-        $this->selectionSet[] = $selectionSet->getSelection();
+        $this->addSelectionSet($selectionSet);
 
         $this->date  = $date;
         $this->limit = $limit;
@@ -25,10 +25,11 @@ class HttpRequests1dGroups implements DataSetInterface
 
     public function getDataSet()
     {
-        $query = new Query('httpRequests1dGroups');
+        $query = new Query('firewallEventsAdaptive');
         $query->setArguments([
             'limit'  => $this->limit,
-            'filter' => new RawObject('{date: "'.$this->date->format('Y-m-d').'"}'),
+            // @TODO - need a way to create these raw filters with all the possible variations.
+            'filter' => new RawObject('{datetime_gt:"2020-01-15T13:00:00Z", datetime_lt:"2020-01-16T13:00:00Z"}'),
         ]);
 
         $query->setSelectionSet($this->selectionSet);
@@ -38,6 +39,12 @@ class HttpRequests1dGroups implements DataSetInterface
 
     public function addSelectionSet(SelectionSetInterface $selectionSet)
     {
+        if (is_array($selectionSet->getSelection())) {
+            $this->selectionSet = $selectionSet->getSelection();
+
+            return $this;
+        }
+
         $this->selectionSet[] = $selectionSet->getSelection();
 
         return $this;

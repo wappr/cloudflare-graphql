@@ -1,6 +1,6 @@
 <?php
 
-namespace Wappr\Cloudflare\DataSets\HttpRequests;
+namespace Wappr\Cloudflare\DataSets\FirewallAnalytics;
 
 use DateTime;
 use GraphQL\Query;
@@ -8,7 +8,7 @@ use GraphQL\RawObject;
 use Wappr\Cloudflare\Contracts\DataSetInterface;
 use Wappr\Cloudflare\Contracts\SelectionSetInterface;
 
-class HttpRequests1dGroups implements DataSetInterface
+class FirewallEventsAdaptiveGroups implements DataSetInterface
 {
     protected $selectionSet = [];
 
@@ -25,10 +25,10 @@ class HttpRequests1dGroups implements DataSetInterface
 
     public function getDataSet()
     {
-        $query = new Query('httpRequests1dGroups');
+        $query = new Query('firewallEventsAdaptiveGroups');
         $query->setArguments([
             'limit'  => $this->limit,
-            'filter' => new RawObject('{date: "'.$this->date->format('Y-m-d').'"}'),
+            'filter' => new RawObject('{datetime: "'.$this->date->format(DateTime::ATOM).'"}'),
         ]);
 
         $query->setSelectionSet($this->selectionSet);
@@ -38,8 +38,5 @@ class HttpRequests1dGroups implements DataSetInterface
 
     public function addSelectionSet(SelectionSetInterface $selectionSet)
     {
-        $this->selectionSet[] = $selectionSet->getSelection();
-
-        return $this;
     }
 }

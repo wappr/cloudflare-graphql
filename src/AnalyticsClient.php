@@ -4,7 +4,7 @@ namespace Wappr\Cloudflare;
 
 use GraphQL\Query;
 use GraphQL\Client;
-use Wappr\Cloudflare\Contracts\QueryInterface;
+use Wappr\Cloudflare\Contracts\ResourceInterface;
 
 class AnalyticsClient
 {
@@ -19,14 +19,14 @@ class AnalyticsClient
                 'headers' => [
                     'X-AUTH-EMAIL' => $email,
                     'X-AUTH-KEY'   => $key,
-                ]
+                ],
             ]
         );
     }
 
-    public function runQuery(QueryInterface $query)
+    public function runQuery(ResourceInterface $resource)
     {
-        $gql = (new Query('viewer'))->setSelectionSet([$query->getQuery()]);
+        $gql = (new Query('viewer'))->setSelectionSet([$resource->getResource()]);
 
         return $this->client->runQuery($gql)->getResponseBody();
     }

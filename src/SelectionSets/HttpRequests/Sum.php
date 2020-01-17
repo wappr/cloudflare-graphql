@@ -1,11 +1,12 @@
 <?php
 
-namespace Wappr\Cloudflare\DataSets;
+namespace Wappr\Cloudflare\SelectionSets\HttpRequests;
 
 use GraphQL\Query;
-use Wappr\Cloudflare\Contracts\QueryInterface;
+use Wappr\Cloudflare\Contracts\SelectionSetInterface;
+use Wappr\Cloudflare\SelectionSets\AbstractSelectionSet;
 
-class Sum implements QueryInterface
+class Sum extends AbstractSelectionSet implements SelectionSetInterface
 {
     protected $selectionSet = [
         'pageViews',
@@ -18,14 +19,7 @@ class Sum implements QueryInterface
         'encryptedRequests',
     ];
 
-    public function __construct($selectionSet = [])
-    {
-        if($selectionSet) {
-            $this->selectionSet = $selectionSet;
-        }
-    }
-
-    public function getQuery()
+    public function getSelection()
     {
         $query = new Query('sum');
         $query->setSelectionSet($this->selectionSet);
