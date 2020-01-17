@@ -3,15 +3,14 @@ php:
   - '7.2'
   - '7.3'
   - '7.4'
-  - nightly
 
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 script:
   - phpunit --coverage-clover=coverage.xml
-  - php coverage-checker.php coverage.xml 60
+# - php coverage-checker.php coverage.xml 60
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+#after_success:
+#  - bash <(curl -s https://codecov.io/bash)
 #
