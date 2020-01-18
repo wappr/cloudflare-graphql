@@ -37,7 +37,7 @@ class AnalyticsClient
         // I'm not sure if this is a good idea, or good practice, or if I should
         // handle it another way. I like the idea of being able to add as many
         // resources and run them in the same query.
-        if(!$this->resources) {
+        if (!$this->resources) {
             throw new \Exception('Must add a resource before calling "runQuery()"');
         }
 
