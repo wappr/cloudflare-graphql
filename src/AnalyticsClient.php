@@ -45,4 +45,9 @@ class AnalyticsClient
 
         return $this->client->runQuery($gql)->getResponseBody();
     }
+
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+    }
 }
