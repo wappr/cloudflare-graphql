@@ -5,14 +5,35 @@ namespace Wappr\Cloudflare\DataSets\HttpRequests;
 use DateTime;
 use GraphQL\Query;
 use GraphQL\RawObject;
+use GraphQL\Exception\ArgumentException;
+use GraphQL\Exception\InvalidSelectionException;
 use Wappr\Cloudflare\Contracts\DataSetInterface;
 use Wappr\Cloudflare\Contracts\SelectionSetInterface;
 
+/**
+ * HTTP Requests.
+ *
+ * Node: httpRequests1dGroups
+ *
+ * @see https://developers.cloudflare.com/analytics/graphql-api/features/data-sets/
+ */
 class HttpRequests1dGroups implements DataSetInterface
 {
+    /**
+     * An array of SelectionSetInterface.
+     *
+     * @var array<int, SelectionSetInterface>
+     */
     protected $selectionSet = [];
 
+    /**
+     * @var \DateTime
+     */
     protected $date;
+
+    /**
+     * @var int
+     */
     protected $limit;
 
     public function __construct(SelectionSetInterface $selectionSet, DateTime $date, $limit)
@@ -23,6 +44,12 @@ class HttpRequests1dGroups implements DataSetInterface
         $this->limit = $limit;
     }
 
+    /**
+     * @return GraphQL\Query
+     *
+     * @throws ArgumentException
+     * @throws InvalidSelectionException
+     */
     public function getDataSet()
     {
         $query = new Query('httpRequests1dGroups');
@@ -36,6 +63,9 @@ class HttpRequests1dGroups implements DataSetInterface
         return $query;
     }
 
+    /**
+     * @return $this
+     */
     public function addSelectionSet(SelectionSetInterface $selectionSet)
     {
         $this->selectionSet[] = $selectionSet->getSelection();

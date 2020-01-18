@@ -4,12 +4,24 @@ namespace Wappr\Cloudflare\Resources;
 
 use GraphQL\Query;
 use GraphQL\RawObject;
+use GraphQL\Exception\ArgumentException;
+use GraphQL\Exception\InvalidSelectionException;
 use Wappr\Cloudflare\Contracts\DataSetInterface;
 use Wappr\Cloudflare\Contracts\ResourceInterface;
 
+/**
+ * @see https://developers.cloudflare.com/analytics/graphql-api/features/filtering/
+ */
 class Zones implements ResourceInterface
 {
+    /**
+     * @var array<int, DataSetInterface>
+     */
     protected $dataset = [];
+
+    /**
+     * @var string
+     */
     protected $zoneid;
 
     public function __construct(DataSetInterface $dataset, $zoneid)
@@ -18,6 +30,12 @@ class Zones implements ResourceInterface
         $this->zoneid    = $zoneid;
     }
 
+    /**
+     * @return GraphQL\Query
+     *
+     * @throws ArgumentException
+     * @throws InvalidSelectionException
+     */
     public function getResource()
     {
         $query = new Query('zones');
@@ -27,6 +45,9 @@ class Zones implements ResourceInterface
         return $query;
     }
 
+    /**
+     * @return void
+     */
     public function addDataSet(DataSetInterface $dataset)
     {
         $this->dataset[] = $dataset->getDataSet();
