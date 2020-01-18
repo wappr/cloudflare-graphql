@@ -1,13 +1,13 @@
-name: CI
+name: ApiGen
 
 on: [push]
 
 jobs:
-  build:
-
+  apigen:
     runs-on: ubuntu-latest
-
     steps:
-    - name: ApiGen Docs
-      uses: varunsridharan/action-apigen@1.0
-
+    - uses: actions/checkout@v1
+    - name: ApiGen Docs Generator
+      uses: wappr/action-apigen@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
