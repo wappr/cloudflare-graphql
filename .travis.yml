@@ -21,8 +21,9 @@ deploy:
   provider: surge
   skip_cleanup: true
   project: ./build/
-  domain: cloudflare-graphql.surge.sh
+  domain: cloudflare-analytics.surge.sh
   on:
+    branch: master
     php: '7.3'
 
 #
