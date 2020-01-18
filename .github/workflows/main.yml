@@ -1,0 +1,13 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ApiGen Docs
+      uses: varunsridharan/action-apigen@1.0
+
