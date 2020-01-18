@@ -4,3 +4,4 @@ vendor
 coverage.xml
 *.cache
 build
+cache
