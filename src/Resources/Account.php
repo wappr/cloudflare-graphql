@@ -14,7 +14,7 @@ class Account implements ResourceInterface
 
     public function __construct(DataSetInterface $dataset, $accountTag)
     {
-        $this->dataset[] = $dataset->getDataSet();
+        $this->dataset[]     = $dataset->getDataSet();
         $this->accountTag    = $accountTag;
     }
 

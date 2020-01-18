@@ -5,5 +5,9 @@
 [![GitHub license](https://img.shields.io/github/license/wappr/cloudflare-graphql)](https://github.com/wappr/cloudflare-graphql/blob/master/LICENSE)
 
 ```bash
-php-cs-fixer --rules='{"@Symfony": true, "binary_operator_spaces": { "default": "align" }, "ordered_imports": {"sort_algorithm":"length"} }' fix src
+php-cs-fixer fix
 ```
+
+## Notes
+
+`vendor/bin/phpunit --coverage-html build`
