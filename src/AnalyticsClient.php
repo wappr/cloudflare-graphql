@@ -2,13 +2,24 @@
 
 namespace Wappr\Cloudflare;
 
+use Exception;
 use GraphQL\Query;
 use GraphQL\Client;
+use GraphQL\Exception\InvalidSelectionException;
 use Wappr\Cloudflare\Contracts\ResourceInterface;
 
 class AnalyticsClient
 {
+    /**
+     * @var GraphQL\Client;
+     * @package Wappr\Cloudflare
+     */
     protected $client;
+
+    /**
+     * @var array<int, ResourceInterface>
+     * @package Wappr\Cloudflare
+     */
     protected $resources = [];
 
     public function __construct($email, $key)
@@ -25,6 +36,11 @@ class AnalyticsClient
         );
     }
 
+    /**
+     *
+     * @param ResourceInterface $resource
+     * @return $this
+     */
     public function addResource(ResourceInterface $resource)
     {
         $this->resources[] = $resource->getResource();
@@ -32,6 +48,12 @@ class AnalyticsClient
         return $this;
     }
 
+    /**
+     *
+     * @return mixed
+     * @throws Exception
+     * @throws InvalidSelectionException
+     */
     public function runQuery()
     {
         // I'm not sure if this is a good idea, or good practice, or if I should
@@ -46,6 +68,11 @@ class AnalyticsClient
         return $this->client->runQuery($gql)->getResponseBody();
     }
 
+    /**
+     *
+     * @param Client $client
+     * @return void
+     */
     public function setClient(Client $client)
     {
         $this->client = $client;
