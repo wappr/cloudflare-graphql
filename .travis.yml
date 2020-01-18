@@ -21,7 +21,8 @@ deploy:
   provider: netlify
   site: cloudflare-analytics.netlify.com
   edge: true # opt in to dpl v2
-  local-dir: "build/"
+  local_dir: "build/"
+  auth: $NETLIFY_AUTH
   on:
     branch: master
     php: '7.3'
