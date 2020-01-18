@@ -10,5 +10,9 @@
         "psr-4": {
             "Wappr\\Cloudflare\\": "src/"
         }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.0",
+        "phpunit/phpunit": "^8"
     }
 }
