@@ -6,7 +6,7 @@
 
 ## Docs
 
-[https://cloudflare-analytics.surge.sh/](https://cloudflare-analytics.surge.sh/).
+[https://cloudflare-analytics.wappr.net//](https://cloudflare-analytics.wappr.net//).
 
 ## Notes
 
