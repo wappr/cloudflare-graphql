@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use GraphQL\Query;
@@ -11,16 +12,16 @@ final class SelectionSetAverageTest extends TestCase
 {
     public function testAverageGetSelectionReturnsQuery(): void
     {
-        $this->assertInstanceOf(Query::class, (new Average)->getSelection());
+        $this->assertInstanceOf(Query::class, (new Average())->getSelection());
     }
 
     public function testAverageImplementsSelectionSetInterface(): void
     {
-        $this->assertInstanceOf(SelectionSetInterface::class, new Average);
+        $this->assertInstanceOf(SelectionSetInterface::class, new Average());
     }
 
-    public function testAverageExtendsAbstractSelectionSet():void
+    public function testAverageExtendsAbstractSelectionSet(): void
     {
-        $this->assertInstanceOf(AbstractSelectionSet::class, new Average);
+        $this->assertInstanceOf(AbstractSelectionSet::class, new Average());
     }
 }
