@@ -1,4 +1,5 @@
 index.php
 composer.lock
 vendor
-.php_cs.cache
+coverage.xml
+*.cache
