@@ -21,7 +21,7 @@ deploy:
   provider: netlify
   site: cloudflare-analytics.netlify.com
   edge: true # opt in to dpl v2
-  local_dir: "build/"
+  dir: "build/"
   on:
     branch: master
     php: '7.3'
