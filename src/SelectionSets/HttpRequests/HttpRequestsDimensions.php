@@ -2,31 +2,30 @@
 
 namespace Wappr\Cloudflare\SelectionSets\HttpRequests;
 
-use GraphQL\Exception\InvalidSelectionException;
 use GraphQL\Query;
+use GraphQL\Exception\InvalidSelectionException;
 use Wappr\Cloudflare\Contracts\SelectionSetInterface;
 use Wappr\Cloudflare\SelectionSets\AbstractSelectionSet;
 
-class Average extends AbstractSelectionSet implements SelectionSetInterface
+class HttpRequestsDimensions extends AbstractSelectionSet implements SelectionSetInterface
 {
     /**
      * Fields to get when running query.
      *
      * @var array<int, string>
-     * @package Wappr\Cloudflare\SelectionSets\FirewallActivityLog
      */
     protected $selectionSet = [
-        'bytes',
+        'date',
     ];
 
     /**
-     *
      * @return GraphQL\Query
+     *
      * @throws InvalidSelectionException
      */
     public function getSelection()
     {
-        $query = new Query('avg');
+        $query = new Query('dimensions');
         $query->setSelectionSet($this->selectionSet);
 
         return $query;

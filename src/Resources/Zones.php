@@ -31,6 +31,8 @@ class Zones implements ResourceInterface
     }
 
     /**
+     * Create and return a GraphQL Query.
+     *
      * @return GraphQL\Query
      *
      * @throws ArgumentException

@@ -36,6 +36,11 @@ class FirewallEventsAdaptive implements DataSetInterface
      */
     protected $limit;
 
+    /**
+     * FirewallEventsAdaptive DataSet.
+     *
+     * @todo update the construct parameters.
+     */
     public function __construct(SelectionSetInterface $selectionSet, DateTime $date, $limit)
     {
         $this->addSelectionSet($selectionSet);
@@ -45,6 +50,8 @@ class FirewallEventsAdaptive implements DataSetInterface
     }
 
     /**
+     * Creates a GraphQL Query from the properties of this class, and returns it.
+     *
      * @return GraphQL\Query
      *
      * @throws ArgumentException
@@ -65,6 +72,8 @@ class FirewallEventsAdaptive implements DataSetInterface
     }
 
     /**
+     * Append a SelectionSetInterface to the selectionSet array.
+     *
      * @return $this
      */
     public function addSelectionSet(SelectionSetInterface $selectionSet)

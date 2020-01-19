@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use Wappr\Cloudflare\AnalyticsClient;
 use Wappr\Cloudflare\Resources\Zones;
-use Wappr\Cloudflare\SelectionSets\HttpRequests\Average;
 use Wappr\Cloudflare\DataSets\HttpRequests\HttpRequests1dGroups;
+use Wappr\Cloudflare\SelectionSets\HttpRequests\HttpRequestsAverage;
 
 final class AnalyticsClientTest extends TestCase
 {
@@ -32,7 +32,7 @@ final class AnalyticsClientTest extends TestCase
         $client->addResource(
             new Zones(
                 new HttpRequests1dGroups(
-                    new Average(),
+                    new HttpRequestsAverage(),
                     new \DateTime('now'),
                     10
                 ), ''
@@ -58,7 +58,7 @@ final class AnalyticsClientTest extends TestCase
         $client->addResource(
             new Zones(
                 new HttpRequests1dGroups(
-                    new Average(),
+                    new HttpRequestsAverage(),
                     new \DateTime('now'),
                     10
                 ), ''

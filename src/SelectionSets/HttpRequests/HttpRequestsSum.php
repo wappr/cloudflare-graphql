@@ -2,31 +2,37 @@
 
 namespace Wappr\Cloudflare\SelectionSets\HttpRequests;
 
-use GraphQL\Exception\InvalidSelectionException;
 use GraphQL\Query;
+use GraphQL\Exception\InvalidSelectionException;
 use Wappr\Cloudflare\Contracts\SelectionSetInterface;
 use Wappr\Cloudflare\SelectionSets\AbstractSelectionSet;
 
-class Dimensions extends AbstractSelectionSet implements SelectionSetInterface
+class HttpRequestsSum extends AbstractSelectionSet implements SelectionSetInterface
 {
     /**
      * Fields to get when running query.
      *
      * @var array<int, string>
-     * @package Wappr\Cloudflare\SelectionSets\FirewallActivityLog
      */
     protected $selectionSet = [
-        'date',
+        'pageViews',
+        'requests',
+        'threats',
+        'bytes',
+        'cachedBytes',
+        'cachedRequests',
+        'encryptedBytes',
+        'encryptedRequests',
     ];
 
     /**
-     *
      * @return GraphQL\Query
+     *
      * @throws InvalidSelectionException
      */
     public function getSelection()
     {
-        $query = new Query('dimensions');
+        $query = new Query('sum');
         $query->setSelectionSet($this->selectionSet);
 
         return $query;

@@ -2,26 +2,25 @@
 
 namespace Wappr\Cloudflare\SelectionSets\HttpRequests;
 
-use GraphQL\Exception\InvalidSelectionException;
 use GraphQL\Query;
+use GraphQL\Exception\InvalidSelectionException;
 use Wappr\Cloudflare\Contracts\SelectionSetInterface;
 use Wappr\Cloudflare\SelectionSets\AbstractSelectionSet;
 
-class Unique extends AbstractSelectionSet implements SelectionSetInterface
+class HttpRequestsUnique extends AbstractSelectionSet implements SelectionSetInterface
 {
     /**
      * Fields to get when running query.
      *
      * @var array<int, string>
-     * @package Wappr\Cloudflare\SelectionSets\FirewallActivityLog
      */
     protected $selectionSet = [
         'uniques',
     ];
 
     /**
-     *
      * @return GraphQL\Query
+     *
      * @throws InvalidSelectionException
      */
     public function getSelection()

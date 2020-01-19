@@ -11,7 +11,6 @@ class FirewallActivityLog extends AbstractSelectionSet implements SelectionSetIn
      * Fields to get when running query.
      *
      * @var array<int, string>
-     * @package Wappr\Cloudflare\SelectionSets\FirewallActivityLog
      */
     protected $selectionSet = [
         'action',

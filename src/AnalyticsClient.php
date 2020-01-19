@@ -12,13 +12,11 @@ class AnalyticsClient
 {
     /**
      * @var GraphQL\Client;
-     * @package Wappr\Cloudflare
      */
     protected $client;
 
     /**
      * @var array<int, ResourceInterface>
-     * @package Wappr\Cloudflare
      */
     protected $resources = [];
 
@@ -37,8 +35,6 @@ class AnalyticsClient
     }
 
     /**
-     *
-     * @param ResourceInterface $resource
      * @return $this
      */
     public function addResource(ResourceInterface $resource)
@@ -49,8 +45,8 @@ class AnalyticsClient
     }
 
     /**
-     *
      * @return mixed
+     *
      * @throws Exception
      * @throws InvalidSelectionException
      */
@@ -69,8 +65,6 @@ class AnalyticsClient
     }
 
     /**
-     *
-     * @param Client $client
      * @return void
      */
     public function setClient(Client $client)

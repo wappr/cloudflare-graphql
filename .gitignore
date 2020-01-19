@@ -6,3 +6,4 @@ coverage.xml
 build
 cache
 *.phar
+.DS_Store
