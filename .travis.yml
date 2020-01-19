@@ -21,6 +21,7 @@ deploy:
   local_dir: ./build
   acl: public_read
   skip_cleanup: true
+  upload-dir: api/cf-graph
   on:
     branch: master
     php: '7.3'
