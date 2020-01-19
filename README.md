@@ -6,7 +6,7 @@
 
 ## Docs
 
-[https://cloudflare-analytics.wappr.net/](https://cloudflare-analytics.wappr.net/).
+[https://wappr.net/api/cf-graph/](https://wappr.net/api/cf-graph/).
 
 ## Notes
 
