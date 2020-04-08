@@ -36,17 +36,20 @@ class FirewallEventsAdaptive implements DataSetInterface
      */
     protected $limit;
 
+    protected $filter;
+
     /**
      * FirewallEventsAdaptive DataSet.
      *
      * @todo update the construct parameters.
      */
-    public function __construct(SelectionSetInterface $selectionSet, DateTime $date, $limit)
+    public function __construct(SelectionSetInterface $selectionSet, DateTime $date, $filter, $limit)
     {
         $this->addSelectionSet($selectionSet);
 
         $this->date  = $date;
         $this->limit = $limit;
+        $this->filter = $filter;
     }
 
     /**
@@ -63,7 +66,7 @@ class FirewallEventsAdaptive implements DataSetInterface
         $query->setArguments([
             'limit'  => $this->limit,
             // @TODO - need a way to create these raw filters with all the possible variations.
-            'filter' => new RawObject('{datetime_gt:"2020-01-15T13:00:00Z", datetime_lt:"2020-01-16T13:00:00Z"}'),
+            'filter' => new RawObject($this->filter),
         ]);
 
         $query->setSelectionSet($this->selectionSet);
