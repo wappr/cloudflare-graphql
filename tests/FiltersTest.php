@@ -3,17 +3,32 @@
 use PHPUnit\Framework\TestCase;
 use Wappr\Cloudflare\GraphQL\Filters\DateTimeGreaterThan;
 use Wappr\Cloudflare\GraphQL\Filters\DateTimeLessThan;
-use Wappr\Cloudflare\GraphQL\Filters\SimpleFilterBuilder;
+use Wappr\Cloudflare\GraphQL\Filters\FilterGroup;
+use Wappr\Cloudflare\GraphQL\Filters\ZoneTag;
 
 final class FiltersTest extends TestCase
 {
-    public function testSimpleFilterBuilder()
+    public function testDateTimeGreaterThanFilter()
     {
-        $dategt = new DateTimeGreaterThan('2020-07-01');
-        $datelt = new DateTimeLessThan('2020-07-01');
+        $dtgt = new DateTimeGreaterThan(new \DateTime);
 
-        $filters = new SimpleFilterBuilder($dategt, $datelt);
+        $this->assertIsArray($dtgt->get());
+    }
 
-        $this->assertJson($filters->filters());
+    public function testFilterGroup()
+    {
+        $dtgt = new DateTimeGreaterThan(new \DateTime);
+        $dtlt = new DateTimeLessThan(new \DateTime);
+        $filterGroup = new FilterGroup($dtgt, $dtlt);
+
+        $this->assertIsArray($filterGroup->get());
+    }
+
+    public function testZoneTag()
+    {
+        $zonetag = new ZoneTag('1234');
+        $this->assertIsArray($zonetag->get());
+
+        $this->assertEquals('1234', $zonetag->get()['zoneTag']);
     }
 }

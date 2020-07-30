@@ -2,17 +2,12 @@
 
 namespace Wappr\Cloudflare\GraphQL\Filters;
 
-class AbstractFilter
+abstract class AbstractFilter implements FilterInterface
 {
-    protected $key;
-    protected $value;
+    protected $key = '';
+    protected $value = '';
 
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
-
-    public function get()
+    public function get(): array
     {
         return [$this->key => $this->value];
     }
